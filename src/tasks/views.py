@@ -13,11 +13,8 @@ def tasks_list(request):
     # recuperar todas las tareas de la base de datos
     tasks = Task.objects.all()
 
-    # crear la presentacion de los datos
-    html = "<ul>"
-    for task in tasks:
-        html += "<li>" + task.name + "</li>"
-    html += "</ul>"
-
     # devolver la respuesta
-    return HttpResponse(html)
+    context = {
+        'task_objects': tasks
+    }
+    return render(request, 'tasks/list.html', context)
