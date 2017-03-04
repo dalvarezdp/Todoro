@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.http import HttpResponseNotFound
 from django.shortcuts import render
@@ -5,12 +6,14 @@ from django.shortcuts import render
 from tasks.models import Task
 
 
+@login_required()
 def tasks_list(request):
     """
     Recupera todas las tareas de la base de datos y las pinta
     :param request: HttpRequest
     :return: HttpResponse
     """
+
     # recuperar todas las tareas de la base de datos
     tasks = Task.objects.select_related("owner", "assignee").all()
 
@@ -52,3 +55,13 @@ def tasks_detail(request, task_pk):
 
     # renderizar el contexto
     return render(request, 'tasks/detail.html', context)
+
+
+def login(request):
+    """
+    Hace login de un usuario
+    :param request: HttpRequest
+    :return: HttpResponse
+    """
+
+    return render(request, 'tasks/login.html')

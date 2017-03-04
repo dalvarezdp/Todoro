@@ -145,3 +145,6 @@ LOGGING = {
         }
     }
 }
+
+# login URL
+LOGIN_URL = '/login'
