@@ -30,7 +30,7 @@ def tasks_detail(request, task_pk):
     """
     # recuperar la tarea de la base de datos
     try:
-        task = Task.objects.get(pk=task_pk)
+        task = Task.objects.select_related().get(pk=task_pk)
     except Task.DoesNotExist:
         #return HttpResponseNotFound("La tarea que buscas no existe.")
         return render(request, 'tasks/404.html', {}, status=404)
