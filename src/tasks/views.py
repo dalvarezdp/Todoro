@@ -32,6 +32,7 @@ def tasks_list(request):
     return render(request, 'tasks/list.html', context)
 
 
+@login_required()
 def tasks_detail(request, task_pk):
     """
     Recupera una tareaa de la base de datos y las pinta con una plantilla
@@ -56,12 +57,3 @@ def tasks_detail(request, task_pk):
     # renderizar el contexto
     return render(request, 'tasks/detail.html', context)
 
-
-def login(request):
-    """
-    Hace login de un usuario
-    :param request: HttpRequest
-    :return: HttpResponse
-    """
-
-    return render(request, 'tasks/login.html')
