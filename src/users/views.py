@@ -17,7 +17,7 @@ class LoginView(View):
             'form': LoginForm()
         }
 
-        return render(request, 'tasks/login.html', context)
+        return render(request, 'login.html', context)
 
     def post(self, request):
         """
@@ -42,7 +42,7 @@ class LoginView(View):
                 # Usuario no autenticadopero
                 context["error"] = "Wrong username or password"
         context['form'] = form
-        return render(request, 'tasks/login.html', context)
+        return render(request, 'login.html', context)
 
 
 def logout(request):
