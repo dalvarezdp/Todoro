@@ -20,7 +20,7 @@ class UsersAPI(APIView):
         :param request: HttpRequest
         :return: HttpResponse
         """
-        users = User.objects.all()
+        users = User.objects.all().values("id", "username")
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
